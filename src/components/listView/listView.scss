@@ -1,0 +1,167 @@
+@use '../../style/colors';
+@use '../flashcardView/flashcardView.scss';
+
+#listViewContainer {
+    @extend flashcardView, .questionBlock !optional;
+
+    #searchContainer {
+        display: flex;
+        justify-content: center;
+        
+        input {
+            width: -webkit-fill-available;
+            max-width: 270px;
+            margin-top: 0.5em;
+            border-radius: 1rem;
+            padding-left: 10px;
+            padding-right: 40px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border: 1px solid black;
+            outline: 0;
+            box-shadow: inset 0 0 5px 0 rgb(43 43 43 / 15%), inset 0 11px 6px -7px rgb(43 43 43 / 15%);
+            font-size: 19.2px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            
+            &:placeholder-shown {
+                box-shadow: none;
+            }
+
+            &:focus{
+                box-shadow: inset 0 0 5px 0 rgb(43 43 43 / 15%), inset 0 11px 6px -7px rgb(43 43 43 / 15%);
+            }
+        }
+
+        button {
+            font-size: larger;
+            border: 0;
+            padding: 0;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-top: 0.5em;
+            left: -40px;
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+
+            &.hidden {
+                visibility: hidden;
+            }
+
+            p {
+                color: grey;
+                margin: 0;
+            }
+        }
+    }
+
+    .chapter {
+        font-weight: 600;
+        margin-top: 2em;
+        font-size: larger;
+        text-decoration: dashed;
+
+        &:first-of-type {
+            margin-top: 1em;
+        }
+    }
+
+    .allQuestionsContainer {
+        .question {
+            @extend flashcardView, .question !optional;
+            font-weight: normal;
+            cursor: pointer;
+            background-color: transparent;
+            width: -webkit-fill-available;
+            outline: 0;
+            border: 0;
+            border-left: 3px solid;
+            padding-right: 0.5em;
+            padding-left: 0.5em;
+            padding-top: 0.2em;
+            padding-bottom: 0.2em;
+            margin-bottom: 1em;
+            font-size: 19.2px;
+            text-align: left;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+
+            &.visible {
+                margin: 0;
+                padding-bottom: 0.5em;
+                font-weight: 600;
+                border-top: 3px solid;
+                border-right: 3px solid;
+            }
+        }
+
+        .answer {
+            margin-bottom: 1em;
+            padding-right: 0.5em;
+            padding-left: 0.5em;
+            padding-top: 0.2em;
+            padding-bottom: 0.5em;
+            border-bottom: 3px solid;
+            border-left: 3px solid;
+            border-right: 3px solid;
+
+            p {
+                margin-bottom: 0;
+            }
+
+            img {
+                margin-top: 0.5em;
+            }
+        }
+    }
+}
+
+.light {
+    #listViewContainer {
+        background-color: white;
+    }
+
+    .question {
+        color: black;
+        border-color: #c1c1c1;
+
+        &.visible {
+            border-color: #bdffad;
+        }
+    }
+
+    .answer {
+        border-color: #c1c1c1 !important;
+
+        &.visible {
+            border-color: #bdffad !important;
+        }
+    }
+}
+
+.dark {
+    #listViewContainer {
+        background-color: colors.$c5;
+        color: white;
+    }
+
+    .question {
+        color: white;
+        border-color: colors.$c7;
+
+        &.visible {
+            border-color: #bdffad;
+        }
+    }
+
+    .answer {
+        border-color: colors.$c7 !important;
+
+        &.visible {
+            border-color: #bdffad !important;
+        }
+    }
+}

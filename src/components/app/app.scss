@@ -1,0 +1,167 @@
+@use '../../style/colors';
+@use '../flashcardView/flashcardView.scss';
+
+#rootContainer {
+    min-height: 100vh;
+    position: relative;
+
+    &.light {
+        background-color: colors.$c1;
+
+        #headerContainer{
+            background-color: colors.$c3;
+
+            .modeToggle {
+                background-color: colors.$c7;
+            }
+        }
+    }
+
+    &.dark {
+        background-color: colors.$c2;
+
+        #headerContainer{
+            background-color: colors.$c4;
+
+            .modeToggle {
+                background-color: colors.$c5;
+            }
+        }
+    }
+
+    #headerContainer {
+        height: 77px;
+        display: flex;
+        justify-content: center;
+
+        #headerBox {
+            height: 100%;
+            width: 776px;
+            margin-left: 1em;
+            margin-right: 1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: xx-large;
+            font-weight: bold;
+            color: white;
+
+            .modeToggle {
+                font-size: x-large;
+                color: #f2f7fb;
+                outline: 0;
+                border: 0;
+                border-radius: .5rem;
+                padding-right: 0.5em;
+                padding-left: 0.5em;
+                padding-top: 0.2em;
+                padding-bottom: 0.2em;
+                box-shadow: 0 0 5px 0 rgba(43,43,43,.2), 0 11px 6px -7px rgba(43,43,43,.2);
+                cursor: pointer;
+
+                &:active {
+                    box-shadow: inset 0px 0px 5px rgba(43,43,43,.7);
+                }
+
+                &.hidden {
+                    visibility: hidden;
+                }
+                
+                &.list {
+                    svg {
+                        transform: scaleX(-1);
+                        -moz-transform: scaleX(-1);
+                        -webkit-transform: scaleX(-1);
+                        -ms-transform: scaleX(-1);
+                    }
+                }
+            }
+        }
+    }
+
+    #mainContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 4em;
+        padding-bottom: 3em;
+    }
+
+    #versionNumberBlock {
+        color: gray;
+        font-size: smaller;
+        position: absolute;
+        bottom: 0;
+        left: calc(50% - 40px);
+    }
+
+
+
+
+    
+    /* CSS for dark mode */
+    /* https://dev.to/ananyaneogi/create-a-dark-light-mode-switch-with-css-variables-34l8 */
+    /* changed slider sices and small other stuff */
+    .themeSwitchWrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+        margin-top: 1.5em;
+    
+        em {
+            margin-left: 10px;
+            font-size: 1rem;
+            color: grey;
+        }
+    
+        .themeSwitch {
+            display: inline-block;
+            height: 30px;
+            position: relative;
+            width: 57px;
+    
+            input {
+                display:none;
+            }
+        }
+    
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+    
+            &.round {
+                border-radius: 31px;
+    
+                &:before {
+                    border-radius: 50%;
+                }
+            }
+    
+            &:before {
+                background-color: #fff;
+                bottom: 3.98px;
+                content: "";
+                height: 23px;
+                left: 4px;
+                position: absolute;
+                transition: .4s;
+                width: 24.5px;
+            }
+        }
+    
+        // Convert to nested scss
+        input:checked + .slider {
+            background-color: colors.$c6;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+    }
+}
