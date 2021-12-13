@@ -87,7 +87,7 @@ export default class App extends React.Component<IProps, IState> {
                                 <input type="checkbox" id="darkModeCheckbox" onChange={this.toggleTheme} checked={this.state.darkMode}/>
                                 <div className="slider round"></div>
                             </label>
-                            <em>Dark Mode {this.state.darkMode ? "an" : "aus"}</em>
+                            <em>Dark Mode {this.state.darkMode ? "on" : "off"}</em>
                         </div>
                     </div>
                     <div id="versionNumberBlock">

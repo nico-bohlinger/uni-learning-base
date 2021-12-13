@@ -95,8 +95,8 @@ export default class FlashcardView extends React.Component<IProps, IState> {
                     <div id="questionBottom">
                         <p id="questionNumber">Frage {this.state.questionNumber} von {this.props.questionFactory.size}</p>
                         <div id="buttonContainer">
-                            <button id="solutionButton" onClick={this.toogleAnswer}>Lösung {this.state.answerVisible ? "ausblenden" : "einblenden"}</button>
-                            <button id="nextButton" onClick={this.nextQuestion}>Nächste Frage</button>
+                            <button id="solutionButton" onClick={this.toogleAnswer}>{this.state.answerVisible ? "Hide" : "Show"} solution</button>
+                            <button id="nextButton" onClick={this.nextQuestion}>Next question</button>
                         </div>
                     </div>
                 </div>

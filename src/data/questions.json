@@ -1,0 +1,26 @@
+[
+    {
+        "question": "A good question",
+        "answer": {
+            "text": ["An even better answer<br/>More detail<br/><br/>Another perspective"],
+            "picture_sources": [""]
+        },
+        "chapter": 1
+    },
+    {
+        "question": "Another brilliant question",
+        "answer": {
+            "text": ["Some picture", "Some text below"],
+            "picture_sources": ["someplant.jpg", ""]
+        },
+        "chapter": 1
+    },
+    {
+        "question": "A great math question involving \\(\\int_{-\\infty}^{\\infty}\\)",
+        "answer": {
+            "text": ["Great solution with \\(\\mu\\)"],
+            "picture_sources": [""]
+        },
+        "chapter": 2
+    }
+]
