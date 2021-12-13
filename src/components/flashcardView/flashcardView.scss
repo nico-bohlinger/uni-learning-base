@@ -79,7 +79,7 @@
                 cursor: pointer;
             
                 &:active {
-                    background-color: colors.$c7;
+                    background-color: colors.$c6;
                     box-shadow: inset 0px 0px 5px rgba(43,43,43,.7);
                 }
             }
@@ -98,13 +98,13 @@
     }
 
     button {
-        background-color: colors.$c3;
+        background-color: colors.$c2;
     }
 }
 
 .dark {
     .questionBlock {
-        background-color: colors.$c5;
+        background-color: colors.$c4;
         color: white;
     }
 
@@ -113,7 +113,7 @@
     }
 
     button {
-        background-color: colors.$c6;
+        background-color: colors.$c5;
     }
 }
 

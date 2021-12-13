@@ -6,25 +6,25 @@
     position: relative;
 
     &.light {
+        background-color: #f2f7fb;
+
+        #headerContainer{
+            background-color: colors.$c2;
+
+            .modeToggle {
+                background-color: colors.$c6;
+            }
+        }
+    }
+
+    &.dark {
         background-color: colors.$c1;
 
         #headerContainer{
             background-color: colors.$c3;
 
             .modeToggle {
-                background-color: colors.$c7;
-            }
-        }
-    }
-
-    &.dark {
-        background-color: colors.$c2;
-
-        #headerContainer{
-            background-color: colors.$c4;
-
-            .modeToggle {
-                background-color: colors.$c5;
+                background-color: colors.$c4;
             }
         }
     }
@@ -157,7 +157,7 @@
     
         // Convert to nested scss
         input:checked + .slider {
-            background-color: colors.$c6;
+            background-color: colors.$c5;
         }
         
         input:checked + .slider:before {

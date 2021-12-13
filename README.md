@@ -17,7 +17,8 @@ Change all occurences of the name foo123 to the new project name in the followin
 Reset the version number in src/components/app/App.tsx
 
 ### Color
-Change colors in /src/style/colors.scss
+Run "cd src/style"
+Run "python calc-colors.py '#......'" with the desired main color in hex
 
 ### Logo
 Replace favicon.ico, logo192.png and logo512.png in /public
