@@ -101,7 +101,7 @@ export default class FlashcardView extends React.Component<IProps, IState> {
                     </div>
                 </div>
                 <div id="chapterContainer">
-                    <p>Kapitel:</p>
+                    <p>Chapter:</p>
                     <select id="chapterSelect" value={String(this.props.questionFactory.activeChapter)} onChange={this.onChapterChange}>
                         {this.getChapterOptions()}
                     </select>
