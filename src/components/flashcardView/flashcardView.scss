@@ -109,7 +109,7 @@
     }
 
     .answer img {
-        filter: invert(90%) sepia(50%) saturate(1000%) hue-rotate(191deg) brightness(98%) contrast(92%);
+        filter: colors.$f1;
     }
 
     button {

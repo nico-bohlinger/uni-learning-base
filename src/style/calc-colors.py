@@ -24,8 +24,16 @@ for color in colors:
     new_color_hsv = target_color_hsv + diff
     new_colors[color] = matplotlib.colors.to_hex(matplotlib.colors.hsv_to_rgb(new_color_hsv))
 
+dark_filter_name = "$f1"
+dark_filter_hue = 191
+
+def get_dark_filter(hue):
+    return f"invert(90%) sepia(50%) saturate(1000%) hue-rotate({hue}deg) brightness(98%) contrast(92%)"
+
+diff = target_color_hsv - main_color_hsv
+new_dark_filter_hue = dark_filter_hue + diff[0] * 360
+
 with open('colors.scss', 'w') as f:
-    for i in range(len(new_colors)):
-        color = list(new_colors.keys())[i]
-        line_break = "\n" if i < len(new_colors) - 1 else ""
-        f.write(f"{color}: {new_colors[color]};{line_break}")
+    for color in new_colors:
+        f.write(f"{color}: {new_colors[color]};\n")
+    f.write(f"{dark_filter_name}: {get_dark_filter(new_dark_filter_hue)};")
