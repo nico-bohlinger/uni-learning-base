@@ -36,7 +36,6 @@ export default class ListView extends React.Component<IProps, IState> {
         let questionsAndChapters: any = [];
         let id = 0;
         const questionsInChaptersList = this.props.questionFactory.questionsInChaptersList;
-        let offset = 0;
         let selectedChapter = this.props.questionFactory.activeChapter;
         let startingChapter = selectedChapter === 0 ? 1 : selectedChapter;
         for(let i = startingChapter; i < questionsInChaptersList.length; i++) {
@@ -45,7 +44,7 @@ export default class ListView extends React.Component<IProps, IState> {
             let questionsInChapter = questionsInChaptersList[i];
             let questions: any = [];
             for (let j = 0; j < questionsInChapter.length; j++) {
-                if (this.state.showQuestions[offset + j] === true) {
+                if (this.state.showQuestions[id] === true) {
                     let question = questionsInChapter[j];
                     const questionClass = this.state.opened[id] ? "visible" : "hidden"
                     questions.push(
@@ -57,11 +56,14 @@ export default class ListView extends React.Component<IProps, IState> {
                 }
                 id++;
             }
-            offset += questionsInChapter.length;
             if (questions.length === 0) {
                 questionsAndChapters.pop();
             }
             questionsAndChapters.push(<div className="allQuestionsContainer" key={"allQuestionsContainer-" + i}>{questions}</div>);
+            
+            if (selectedChapter !== 0) {
+                break
+            }
         }
 
         return questionsAndChapters;
@@ -71,19 +73,29 @@ export default class ListView extends React.Component<IProps, IState> {
         const searchString = event.target.value;
         let showQuestions = [];
         if (searchString !== "") {
-            const questionList = this.props.questionFactory.questionList;
-            for (let i = 0; i < questionList.length; i++) {
-                showQuestions[i] = questionList[i].question.toLowerCase().includes(searchString.toLowerCase());
+            const questionsInChaptersList = this.props.questionFactory.questionsInChaptersList;
+            let id = 0;
+            let selectedChapter = this.props.questionFactory.activeChapter;
+            let startingChapter = selectedChapter === 0 ? 1 : selectedChapter;
+            for(let i = startingChapter; i < questionsInChaptersList.length; i++) {
+                let questionsInChapter = questionsInChaptersList[i];
+                for (let j = 0; j < questionsInChapter.length; j++) {
+                    showQuestions[id] = questionsInChapter[j].question.toLowerCase().includes(searchString.toLowerCase());
+                    id++;
+                }
+                if (selectedChapter !== 0) {
+                    break
+                }
             }
         }
         else {
-            showQuestions = new Array(this.props.questionFactory.questionList.length - 1).fill(true);
+            showQuestions = new Array(this.props.questionFactory.questionList.length).fill(true);
         }
         this.setState({showQuestions: showQuestions, searchString: searchString});
     }
 
     onClearButton = () => {
-        const showQuestions = new Array(this.props.questionFactory.questionList.length - 1).fill(true);
+        const showQuestions = new Array(this.props.questionFactory.questionList.length).fill(true);
         this.setState({showQuestions: showQuestions, searchString: ""});
     }
 
