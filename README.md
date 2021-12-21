@@ -13,9 +13,6 @@ Change all occurences of the name foo123 to the new project name in the followin
 - public/manifest.json
 - src/components/app/App.tsx
 
-### Version number
-Reset the version number in src/components/app/App.tsx
-
 ### Color
 Run "cd src/style"
 Run "python calc-colors.py '#......'" with the desired main color in hex
