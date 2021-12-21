@@ -2,7 +2,7 @@
 
 ## Setup
 ### Initialize node modules
-- Todo
+Run "npm install"
 
 ### Project name
 Change all occurences of the name foo123 to the new project name in the following files:
