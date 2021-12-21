@@ -1,6 +1,9 @@
 # uni-learning-base
 
-## Setup
+## First setup
+### Initialize Firebase
+Create project under https://console.firebase.google.com/
+
 ### Initialize node modules
 Run "npm install"
 
@@ -20,8 +23,9 @@ Run "python calc-colors.py '#......'" with the desired main color in hex
 ### Logo
 Replace favicon.ico, logo192.png and logo512.png in /public
 
-### Initialize Firebase
-- Todo
+### Deploy
+Run "npm run build"
+Run "firebase deploy"
 
 
 ## Workflow
