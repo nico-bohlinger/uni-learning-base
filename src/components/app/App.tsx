@@ -11,7 +11,7 @@ import './app.scss';
 library.add(faListOl, farCreditCard);
 
 const PRODUCTION: boolean = true;
-const NAME: string = "foo123";
+const NAME: string = "foo333";
 const VERSION: string = "1.0.0";
 const INITIAL_DARK_MODE: boolean = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? true : false;
 const INITIAL_LIST_VIEW: boolean = false;
