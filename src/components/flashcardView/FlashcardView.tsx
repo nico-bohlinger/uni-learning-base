@@ -37,7 +37,7 @@ export default class FlashcardView extends React.Component<IProps, IState> {
         this.setState({
             question: newQuestion,
             questionNumber: newIndex,
-            answerVisible: false,
+            answerVisible: this.props.production ? false : true
         });
     };
 
@@ -84,6 +84,11 @@ export default class FlashcardView extends React.Component<IProps, IState> {
         return chapterOptions;
     }
 
+    // Not production
+    previousQuestion = () => {
+        this.setQuestion(this.props.questionFactory.getPreviousQuestion());
+    };
+
     render() {
         this.props.typeset();
 
@@ -95,8 +100,9 @@ export default class FlashcardView extends React.Component<IProps, IState> {
                     <div id="questionBottom">
                         <p id="questionNumber">Frage {this.state.questionNumber} von {this.props.questionFactory.size}</p>
                         <div id="buttonContainer">
-                            <button id="solutionButton" onClick={this.toogleAnswer}>{this.state.answerVisible ? "Hide" : "Show"} solution</button>
-                            <button id="nextButton" onClick={this.nextQuestion}>Next question</button>
+                            <button onClick={this.toogleAnswer}>{this.state.answerVisible ? "Hide" : "Show"} solution</button>
+                            <button onClick={this.previousQuestion} className={this.props.production ? "hidden" : ""}>Previous Question</button>
+                            <button onClick={this.nextQuestion}>Next question</button>
                         </div>
                     </div>
                 </div>

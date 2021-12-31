@@ -27,13 +27,15 @@ export class QuestionFactory {
 
     private initQuestionList() {
         let questions: Question[] = [];
+        let i = 0;
         questionsJSON.forEach((data) => {
             const picture_sources = data.answer.picture_sources == null ? null as any : data.answer.picture_sources;
             if (this._activeChapter === 0 || this._activeChapter === data.chapter) {
                 questions.push(
-                    new Question(data.question, new Answer(data.answer.text, picture_sources), data.chapter)
+                    new Question(i, data.question, new Answer(data.answer.text, picture_sources), data.chapter)
                 );
             }
+            i += 1;
         });
         
         this._index = this._production ? 0 : questions.length - 2;
@@ -84,6 +86,17 @@ export class QuestionFactory {
                 this.shuffleQuestionListAndItsAnswers();
             }
             this._index = 0;
+        }
+        return this._questionList[this._index];
+    }
+
+    public getPreviousQuestion(): Question {
+        this._index--;
+        if (this._index === -1) {
+            if (this._production) {
+                this.shuffleQuestionListAndItsAnswers();
+            }
+            this._index = this._questionList.length - 1;
         }
         return this._questionList[this._index];
     }

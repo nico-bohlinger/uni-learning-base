@@ -70,6 +70,8 @@
                 color: #f2f7fb;
                 outline: 0;
                 border: 0;
+                margin-left: 1em;
+                margin-top: 0.5em;
                 border-radius: .5rem;
                 padding-right: 0.5em;
                 padding-left: 0.5em;
@@ -77,16 +79,15 @@
                 padding-bottom: 0.2em;
                 box-shadow: 0 0 5px 0 rgba(43,43,43,.2), 0 11px 6px -7px rgba(43,43,43,.2);
                 cursor: pointer;
+
+                &.hidden {
+                    display: none;
+                }
             
                 &:active {
                     background-color: colors.$c6;
                     box-shadow: inset 0px 0px 5px rgba(43,43,43,.7);
                 }
-            }
-
-            #nextButton {
-                margin-left: 1em;
-                margin-top: 0.5em;
             }
         }
     }

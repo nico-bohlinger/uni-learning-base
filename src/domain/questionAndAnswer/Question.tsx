@@ -1,14 +1,20 @@
 import { Answer } from "./Answer";
 
 export class Question {
+    private _id: number;
     private _question: string;
     private _answer: Answer;
     private _chapter: number;
 
-    constructor(question: string, answer: Answer, chapter: number) {
+    constructor(id: number, question: string, answer: Answer, chapter: number) {
+        this._id = id;
         this._question = question;
         this._answer = answer;
         this._chapter = chapter;
+    }
+
+    get id(): number {
+        return this._id;
     }
 
     get question(): string {

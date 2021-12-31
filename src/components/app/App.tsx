@@ -1,27 +1,28 @@
 import React from 'react';
-import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListOl, faPager } from "@fortawesome/free-solid-svg-icons";
-import { faCreditCard as farCreditCard } from "@fortawesome/free-regular-svg-icons";
 import { QuestionFactory } from '../../domain/questionAndAnswer/QuestionFactory';
 import FlashcardView from '../flashcardView/FlashcardView';
 import ListView from '../listView/ListView';
 import './app.scss';
 
-library.add(faListOl, farCreditCard);
+enum View {
+    Flashcard,
+    List
+}
 
 const PRODUCTION: boolean = true;
 const NAME: string = "foo123";
 const VERSION: string = "1.0.0";
 const INITIAL_DARK_MODE: boolean = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? true : false;
-const INITIAL_LIST_VIEW: boolean = false;
+const INITIAL_MAIN_VIEW: number = View.Flashcard;
 
 interface IProps { }
 
 interface IState {
     darkMode: boolean;
     questionFactory: QuestionFactory;
-    listView: boolean;
+    mainView: number;
 };
 
 export default class App extends React.Component<IProps, IState> {
@@ -33,7 +34,7 @@ export default class App extends React.Component<IProps, IState> {
         this.state = {
             darkMode: INITIAL_DARK_MODE,
             questionFactory: questionFactory,
-            listView: INITIAL_LIST_VIEW
+            mainView: INITIAL_MAIN_VIEW
         }
     }
 
@@ -52,13 +53,25 @@ export default class App extends React.Component<IProps, IState> {
         return mathJax.startup.promise;
     };
 
-    toggleListView = () => {
-        this.setState({listView: !this.state.listView});
+    toggleFlashcardListView = () => {
+        let view = this.state.mainView;
+        view = (view === View.Flashcard) ? View.List : View.Flashcard;
+        this.setState({mainView: view});
     };
 
     toggleTheme = () => {
         this.setState({darkMode: !this.state.darkMode});
     };
+
+    getMainContainerContent = () => {
+        const view = this.state.mainView;
+        if (view === View.Flashcard) {
+            return <FlashcardView production={PRODUCTION} questionFactory={this.state.questionFactory} typeset={this.typeset}/>;
+        }
+        else if (view === View.List) {
+            return <ListView questionFactory={this.state.questionFactory} typeset={this.typeset}/>;
+        }
+    }
 
     render() {
         this.typeset();
@@ -69,18 +82,17 @@ export default class App extends React.Component<IProps, IState> {
             <div id="rootContainer" className={darkModeClass}>
                 <div id="headerContainer">
                     <div id="headerBox">
-                        <button className={"modeToggle " + (this.state.listView ? "list" : "flashcard")} onClick={this.toggleListView}>
-                            {this.state.listView ? <FontAwesomeIcon icon={faPager} /> : <FontAwesomeIcon icon={faListOl} />}
+                        <button className={"headerButtons " + (this.state.mainView === View.Flashcard ? "flashcard" : "list")} onClick={this.toggleFlashcardListView}>
+                            {this.state.mainView === View.Flashcard ? <FontAwesomeIcon icon={faListOl} /> : <FontAwesomeIcon icon={faPager} />}
                         </button>
                         <p>{NAME}</p>
-                        <button className="modeToggle hidden" >
-                            {this.state.listView ? <FontAwesomeIcon icon={faPager} /> : <FontAwesomeIcon icon={faListOl} />}
+                        <button className="headerButtons hidden" >
+                            {this.state.mainView === View.Flashcard ? <FontAwesomeIcon icon={faListOl} /> : <FontAwesomeIcon icon={faPager} />}
                         </button>
                     </div>
                 </div>
                 <div id="mainContainer">
-                    {this.state.listView ? <ListView questionFactory={this.state.questionFactory} typeset={this.typeset}/>
-                                         : <FlashcardView production={PRODUCTION} questionFactory={this.state.questionFactory} typeset={this.typeset}/>}
+                    {this.getMainContainerContent()}
                     <div>
                         <div className="themeSwitchWrapper">
                             <label className="themeSwitch" htmlFor="darkModeCheckbox">
