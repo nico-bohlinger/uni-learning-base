@@ -1,5 +1,8 @@
 # uni-learning-base
 
+## Example Web App
+Example web app based on this template: https://foo333-questions.web.app
+
 ## First setup
 ### Initialize Firebase
 Create project under https://console.firebase.google.com/
@@ -8,7 +11,7 @@ Create project under https://console.firebase.google.com/
 Run "npm install"
 
 ### Project name
-Change all occurences of the name foo123 to the new project name in the following files:
+Change all occurences of the name foo333 to the new project name in the following files:
 - .firebaserc
 - package-lock.json
 - package.json

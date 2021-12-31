@@ -22,7 +22,9 @@ for color in colors:
     selected_color_hsv = matplotlib.colors.rgb_to_hsv(matplotlib.colors.to_rgb(colors[color]))
     diff = selected_color_hsv - main_color_hsv
     new_color_hsv = target_color_hsv + diff
-    new_color_hsv[2] = max(new_color_hsv[2], 0.05)  # fix for negative light values
+    if new_color_hsv[2] < 0.05:
+        print(f"Warning: The light value ({round(new_color_hsv[2] * 100) / 100}) was to low. Now setting it to 0.05. The color relations are not kept!")
+        new_color_hsv[2] = 0.05
     new_colors[color] = matplotlib.colors.to_hex(matplotlib.colors.hsv_to_rgb(new_color_hsv))
 
 dark_filter_name = "$f1"
