@@ -122,6 +122,9 @@
     display: flex;
     margin-bottom: 1em;
     align-items: center;
+    max-width: -webkit-fill-available;
+    padding-left: 2em;
+    padding-right: 2em;
 
     > p {
         margin: 0;
@@ -141,6 +144,8 @@
         font-size: 1rem;
         height: fit-content;
         background-color: transparent;
+        text-overflow: ellipsis;
+        max-width: 50vw;
 
         &:hover {
             cursor: pointer;
