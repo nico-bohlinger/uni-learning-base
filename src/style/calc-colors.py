@@ -23,8 +23,11 @@ for color in colors:
     diff = selected_color_hsv - main_color_hsv
     new_color_hsv = target_color_hsv + diff
     if new_color_hsv[2] < 0.05:
-        print(f"Warning: The light value ({round(new_color_hsv[2] * 100) / 100}) was to low. Now setting it to 0.05. The color relations are not kept!")
+        print(f"Warning: The light value ({round(new_color_hsv[2] * 100) / 100}) was too low. Now setting it to 0.05. The color relations are not kept!")
         new_color_hsv[2] = 0.05
+    if new_color_hsv[1] > 1:
+        print(f"Warning: The saturation value ({round(new_color_hsv[1] * 100) / 100}) was too high. Now setting it to 1. The color relations are not kept!")
+        new_color_hsv[1] = 1
     new_colors[color] = matplotlib.colors.to_hex(matplotlib.colors.hsv_to_rgb(new_color_hsv))
 
 dark_filter_name = "$f1"
